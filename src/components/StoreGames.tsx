@@ -1,19 +1,22 @@
-import { useGames } from '../hooks/useGames';
-import Game from './Game';
-import { Game as GameType } from '../utils/Game';
+import Game from "./Game";
+import { Game as GameType } from "../utils/Game";
+import { useShoppingCart } from "../context/ShoppingCartContext";
+
 export default function StoreGames() {
-    const { games, isLoading, isError } = useGames()
-    console.log(games);
-    if (isLoading) return <div>loading...</div>
+  const { games } = useShoppingCart();
   return (
-    <div className='flex justify-center flex-wrap gap-8 mt-6 bg-slate-950'>
-    {games.results.map((game:GameType) => 
-    <Game 
-        name={game.name} 
-        released={game.released} 
-        background_image={game.background_image}
-        metacritic={game.metacritic}
-        />)}
+    <div className="flex flex-wrap w-full justify-center gap-8 bg-slate-950">
+      {games.map((game: GameType) => (
+        <Game
+          key={game.id}
+          id={game.id}
+          name={game.name}
+          released={game.released}
+          background_image={game.background_image}
+          metacritic={game.metacritic}
+          price={game.price}
+        />
+      ))}
     </div>
-  )
+  );
 }

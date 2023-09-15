@@ -1,13 +1,16 @@
-import { Outlet } from 'react-router-dom'
-import './App.css';
-import Navbar from './components/Navbar'
+import { Outlet } from "react-router-dom";
+import "./App.css";
+import Navbar from "./components/Navbar";
+import { ShoppingCartProvider } from "./context/ShoppingCartContext";
 
 function App() {
   return (
-    <div className='bg-slate-950 h-screen'>
-      <Navbar />
-      <Outlet />
-    </div>
+    <ShoppingCartProvider>
+      <div className="bg-slate-950 h-screen">
+        <Navbar />
+        <Outlet />
+      </div>
+    </ShoppingCartProvider>
   );
 }
 
